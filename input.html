@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q3TLA1_Lohera</title>
+    <style>
+        body {
+            background: #cfcfcf;
+            font-family: Arial, sans-serif;
+        }
+
+        .register-container {
+            width: 430px;
+            margin: 40px auto;
+            padding: 35px 32px 30px 32px;
+            background: #1a1a1a;
+            border-radius: 18px;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.25);
+        }
+
+        .register-container h2 {
+            color: #dddddd;
+            text-align: center;
+            margin-bottom: 22px;
+            font-weight: normal;
+            font-size: 1.6em;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 13px;
+        }
+
+        .form-row input[type="text"],
+        .form-row input[type="number"] {
+            width: 100%;
+        }
+
+        label {
+            color: #bdbdbd;
+            font-size: 0.97em;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="number"],
+        input[type="password"],
+        input[type="date"],
+        input[type="file"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px 8px;
+            border-radius: 4px;
+            border: none;
+            margin-bottom: 4px;
+            font-size: 1em;
+            background: #f7f7f7;
+            color: #232323;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            min-height: 56px;
+            resize: vertical;
+        }
+
+        .error {
+            color: #ff5050;
+            font-size: 0.95em;
+            margin-bottom: 6px;
+            min-height: 16px;
+        }
+
+        .submit-btn {
+            background: #19d11c;
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 12px 0;
+            border-radius: 5px;
+            font-size: 1.07em;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 9px;
+            transition: background 0.2s;
+        }
+
+        .submit-btn:hover {
+            background: #13a816;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 18px;
+            margin-bottom: 6px;
+            padding-top: 2px;
+        }
+
+        .fieldset {
+            border: 1px solid #444;
+            border-radius: 7px;
+            padding: 10px 12px 5px 12px;
+            margin-bottom: 13px;
+            background: #232323;
+        }
+
+        .fieldset legend {
+            color: #bdbdbd;
+            font-size: 1em;
+            padding-left: 4px;
+            padding-right: 4px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="register-container">
+        <h2>FORM</h2>
+        <form id="registerForm" autocomplete="off" action="output.html" method="GET" enctype="multipart/form-data">
+
+            <div class="form-row">
+                <div>
+                    <label for="firstName">First Name</label>
+                    <input type="text" id="firstName" name="firstName" maxlength="64" required>
+                </div>
+                <div>
+                    <label for="middleName">Middle Name</label>
+                    <input type="text" id="middleName" name="middleName" maxlength="64" required>
+                </div>
+                <div>
+                    <label for="lastName">Last Name</label>
+                    <input type="text" id="lastName" name="lastName" maxlength="64" required>
+                </div>
+            </div>
+
+            <label for="photo">Photo</label>
+            <input type="file" id="photo" name="photo" accept="image/*" onchange="storePhoto(event)">
+            <script>
+                function storePhoto(event) {
+                    const file = event.target.files[0];
+                    if (!file) return;
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        sessionStorage.setItem("photoDataURL", e.target.result);
+                    };
+                    reader.readAsDataURL(file);
+                }
+            </script>
+
+            <label for="dob">Date of Birth</label>
+            <input type="date" id="dob" name="dob" required>
+
+            <label for="birthLocation">Birth Location</label>
+            <input type="text" id="birthLocation" name="birthLocation" maxlength="64" required>
+
+            <label>Sex/Gender</label>
+            <div class="radio-group">
+                <label><input type="radio" name="sex" id="male" value="Male" required> Male</label>
+                <label><input type="radio" name="sex" id="female" value="Female"> Female</label>
+            </div>
+
+            <label for="civilStatus">Civil Status</label>
+            <select id="civilStatus" name="civilStatus" required>
+                <option value="">--Select--</option>
+                <option value="Single">Single</option>
+                <option value="Married">Married</option>
+                <option value="Divorced">Divorced</option>
+            </select>
+
+            <label for="nationality">Nationality</label>
+            <input type="text" id="nationality" name="nationality" maxlength="64" required>
+
+            <label for="religion">Religion</label>
+            <input type="text" id="religion" name="religion" maxlength="64" required>
+
+            <label for="contactNumber">Contact Number</label>
+            <input type="text" id="contactNumber" name="contactNumber" maxlength="20" pattern="\d*" required>
+
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" maxlength="64" required>
+
+            <label for="homeAddress">Home Address</label>
+            <textarea id="homeAddress" name="homeAddress" required></textarea>
+
+            <fieldset class="fieldset">
+                <legend>Emergency Contact</legend>
+                <div class="form-row">
+                    <div>
+                        <label for="emergencyName">Name</label>
+                        <input type="text" id="emergencyName" name="emergencyName" maxlength="64" required>
+                    </div>
+                    <div>
+                        <label for="emergencyRelationship">Relationship</label>
+                        <input type="text" id="emergencyRelationship" name="emergencyRelationship" maxlength="64"
+                            required>
+                    </div>
+                    <div>
+                        <label for="emergencyContact">Contact Number</label>
+                        <input type="text" id="emergencyContact" name="emergencyContact" maxlength="20" pattern="\d*">
+                    </div>
+                </div>
+            </fieldset>
+
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" maxlength="64" required>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" maxlength="64" required>
+
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" maxlength="64" required>
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+    </div>
+</body>
+
+</html>

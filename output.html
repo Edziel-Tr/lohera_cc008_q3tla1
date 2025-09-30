@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q3TLA1_Lohera</title>
+    <style>
+        body {
+            background: #cfcfcf;
+            font-family: Arial, sans-serif;
+        }
+
+        .output-container {
+            width: 450px;
+            margin: 40px auto;
+            padding: 35px 32px 30px 32px;
+            background: #1a1a1a;
+            border-radius: 18px;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.25);
+            color: #efefef;
+        }
+
+        h2 {
+            color: #dddddd;
+            text-align: center;
+            margin-bottom: 26px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            color: #efefef;
+        }
+
+        li {
+            margin-bottom: 12px;
+            font-size: 1.08em;
+        }
+
+        strong {
+            min-width: 170px;
+            display: inline-block;
+        }
+
+        em {
+            color: #bdbdbd;
+            font-size: 1em;
+        }
+
+        .photo-preview {
+            display: block;
+            margin: 0 auto 18px auto;
+            max-width: 150px;
+            border-radius: 12px;
+            background: #232323;
+            box-shadow: 0 1px 10px rgba(0, 0, 0, 0.15);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="output-container">
+        <h2>Submitted Information</h2>
+        <script>
+
+            function getParameter(name) {
+                const url = new URL(window.location.href);
+                return url.searchParams.get(name) || "";
+            }
+
+
+            const photoData = sessionStorage.getItem("photoDataURL");
+            if (photoData) {
+                document.write('<img src="' + photoData + '" class="photo-preview" alt="Photo Preview" />');
+            } else {
+                document.write('<p class="photo-preview"><em>Photo preview is not available.</em></p>');
+            }
+        </script>
+        <ul>
+            <li><strong>First Name:</strong>
+                <script>document.write(getParameter('firstName'));</script>
+            </li>
+            <li><strong>Middle Name:</strong>
+                <script>document.write(getParameter('middleName'));</script>
+            </li>
+            <li><strong>Last Name:</strong>
+                <script>document.write(getParameter('lastName'));</script>
+            </li>
+            <li><strong>Date of Birth:</strong>
+                <script>document.write(getParameter('dob'));</script>
+            </li>
+            <li><strong>Birth Location:</strong>
+                <script>document.write(getParameter('birthLocation'));</script>
+            </li>
+            <li><strong>Sex/Gender:</strong>
+                <script>document.write(getParameter('sex'));</script>
+            </li>
+            <li><strong>Civil Status:</strong>
+                <script>document.write(getParameter('civilStatus'));</script>
+            </li>
+            <li><strong>Nationality:</strong>
+                <script>document.write(getParameter('nationality'));</script>
+            </li>
+            <li><strong>Religion:</strong>
+                <script>document.write(getParameter('religion'));</script>
+            </li>
+            <li><strong>Contact Number:</strong>
+                <script>document.write(getParameter('contactNumber'));</script>
+            </li>
+            <li><strong>Email Address:</strong>
+                <script>document.write(getParameter('email'));</script>
+            </li>
+            <li><strong>Home Address:</strong>
+                <script>document.write(getParameter('homeAddress'));</script>
+            </li>
+            <li><strong>Emergency Contact Name:</strong>
+                <script>document.write(getParameter('emergencyName'));</script>
+            </li>
+            <li><strong>Emergency Contact Relationship:</strong>
+                <script>document.write(getParameter('emergencyRelationship'));</script>
+            </li>
+            <li><strong>Emergency Contact Number:</strong>
+                <script>document.write(getParameter('emergencyContact'));</script>
+            </li>
+            <li><strong>Username:</strong>
+                <script>document.write(getParameter('username'));</script>
+            </li>
+        </ul>
+        <p><em>Password is hidden for your security.</em></p>
+    </div>
+</body>
+
+</html>
